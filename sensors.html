@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sensors</title>
+  </head>
+  <body>
+      <h1>Sensors</h1>
+      <a href="index.html">Back</a>
+      
+      <h2>Accelerometer</h2>
+      <div id="accelerometer"></div>
+      
+      <h2>Motion</h2>
+      <div id="motion"></div>
+      
+      <h2>Screen Orientation</h2>
+      <div id="orientation"></div>
+      
+      <script>
+          window.addEventListener('deviceorientation', function(eventData) {
+              document.getElementById('accelerometer').innerHTML = " A: " + eventData.alpha + ", B:" + eventData.beta + ", C:" + eventData.gamma;
+          });     
+          
+          window.addEventListener('devicemotion', function(eventData) {
+              document.getElementById('motion').innerHTML = JSON.stringify(eventData);
+          });
+          if (window.screen) {
+              document.getElementById('orientation').innerHTML = JSON.stringify(window.screen);
+          }
+      </script>
+            
+  </body>
+</html>

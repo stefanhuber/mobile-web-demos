@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+        <title>Device Pixel Ratio</title>
+  </head>
+  <body>
+      <h1>Device Pixel Ratio</h1>
+      <a href="index.html">Back</a>
+      
+      <div id="width"></div>
+      <div id="height"></div>
+      <div id="ratio"></div>
+      
+      <script>
+          document.getElementById('width').innerHTML = "Logical Width: " + window.innerWidth + ", Physical Width: " + (window.innerWidth * window.devicePixelRatio);        
+          document.getElementById('height').innerHTML = "Logical Height: " + window.innerHeight + ", Physical Height: " + (window.innerHeight * window.devicePixelRatio);        
+          document.getElementById('ratio').innerHTML = "Ratio: " + window.devicePixelRatio;  
+      </script>
+            
+  </body>
+</html>

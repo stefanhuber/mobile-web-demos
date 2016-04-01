@@ -1,0 +1,15 @@
+{
+  "name": "mobile-web-demos",
+  "version": "1.0.0",
+  "description": "Some Demos of Mobile Web Features",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefan Huber",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "gulp": "^3.9.1"
+  }
+}
