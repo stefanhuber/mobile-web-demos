@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Speech API</title>
+</head>
+<body>
+    <h1>Web Speech API</h1>
+    <a href="index.html">Back</a>
+
+    <div>
+        <p><select name="voice"></select></p>
+        <p><input name="utterance"> <button>Speak</button></p>
+    </div>  
+
+    <script>
+        let voices = [];
+
+        function renderVoices() {
+            const voiceElement = document.querySelector('[name="voice"]');
+            voices = window.speechSynthesis.getVoices();
+            for (let v = 0; v < voices.length; v++) {
+                voiceElement.innerHTML += `<option value="${v}">${voices[v].name}</option>`;
+            }
+        };
+
+        if (window.speechSynthesis && SpeechSynthesisUtterance) {
+            renderVoices();
+            window.speechSynthesis.onvoiceschanged = renderVoices;
+
+            document.querySelector('button').addEventListener('click', function() {
+                const voiceElement = document.querySelector('[name="voice"]');
+                const text = document.querySelector('[name="utterance"]').value;
+                const utterance = new SpeechSynthesisUtterance(text);
+                const voice = voiceElement.value;                
+                utterance.voice = voices[voice];
+                window.speechSynthesis.speak(utterance);
+            });            
+        } else {
+            alert("Web Speech API is not supported by your Browser!");
+        }        
+    </script>
+</body>
+</html>

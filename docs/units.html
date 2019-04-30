@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Units</title>
+</head>
+<body>
+    <h1>Units</h1>
+    <a href="index.html">Back</a>
+
+    <table id="units">
+    </table>
+
+    <script>
+        function retrieveUnits() {
+            const width = window.screen.width;
+            const height = window.screen.height;
+            const devicePixelRatio = window.devicePixelRatio;
+
+            const unitsElement = document.querySelector('#units');
+            unitsElement.innerHTML = `
+            <tr>
+                <th>CSS width/height</th>
+                <td>${width}/${height}</td>
+            </tr>
+            <tr>
+                <th>Device Pixel Ratio</th>
+                <td>${devicePixelRatio}</td>
+            </tr>
+            <tr>
+                <th>Physical width/height (calculated)</th>
+                <td>${width * devicePixelRatio}/${height * devicePixelRatio}</td>
+            </tr>
+            <tr>
+                <th>1 vw</th>
+                <td>${width / 100} px (CSS)</td>
+            </tr>
+            <tr>
+                <th>1 vh</th>
+                <td>${height / 100} px (CSS)</td>
+            </tr>
+            `;
+        };
+
+        retrieveUnits();
+        window.addEventListener('resize', retrieveUnits);
+    </script>
+</body>
+</html>

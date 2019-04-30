@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Share API</title>
+</head>
+<body>
+    <h1>Web Share API</h1>
+    <a href="../index.html">Back</a>
+
+    <img src="Pendling.jpg" alt="Kufstein Fortress and Pendling">
+    
+    <button>Share Image</button>
+
+    <script>
+        document.querySelector('button').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Kufstein Fortress and Pendling',
+                    text: '',
+                    url: `${window.location.origin}/web-share-api/Pendling.jpg`
+                });
+            } else {
+                alert("Web Share API is not supported by your Browser!");
+            }
+        });
+    </script>
+</body>
+</html>

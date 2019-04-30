@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Touch Handling</title>
+    <style>
+        button {
+            width:40px;
+            height:40px;            
+            position: absolute;
+        }
+        #area {
+            border:1px solid black;
+            margin:10px 0;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Touch Handling</h1>
+    <a href="index.html">Back</a>
+
+    <div id="area">
+        <button></button>
+    </div>
+
+    <script>
+        const areaRects = document.querySelector('#area').getClientRects()[0];
+        const buttonSize = 40;
+        const minX = areaRects.left;
+        const maxX = areaRects.left + areaRects.width;
+        const minY = areaRects.top;
+        const maxY = areaRects.top + areaRects.height;
+        let startX = 0;
+        let startY = 0;
+        
+        const handleTouch = function(e) {
+            const x = e.changedTouches[0].pageX;
+            const y = e.changedTouches[0].pageY;
+            // console.log(x, minX, maxX, y, minY, maxY);
+            
+            if (e.type == 'touchstart') {
+                const buttonRects = document.querySelector('#area > button').getClientRects()[0];
+                startX = x - buttonRects.left;
+                startY = y - buttonRects.top;
+            } else if (e.type == 'touchmove' &&
+                (minX + startX) <= x && (maxX - (buttonSize - startX)) >= x &&
+                (minY + startY) <= y && (maxY - (buttonSize - startY)) >= y) {                
+                button.style.left = (x - startX) + 'px';
+                button.style.top =  (y - startY) + 'px';
+            }
+        };
+
+        const button = document.querySelector('button');
+
+        button.addEventListener('touchstart', handleTouch);
+        button.addEventListener('touchend', handleTouch);
+        button.addEventListener('touchmove', handleTouch);
+        button.addEventListener('touchcancel', handleTouch);
+    </script>    
+</body>
+</html>

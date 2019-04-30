@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Responsive Images 1</title>
+
+    <style>
+        img { width:320px; }
+    </style>
+
+</head>
+<body>
+    <h1>Responsive Images 1</h1>
+    <a href="../index.html">Back</a>
+
+    <h3>960px width (3x)</h3>
+    <img src="Kufstein_Festung_Pendling-960.jpg" alt="960px width">
+    <hr>
+
+    <h3>640px width (2x)</h3>
+    <img src="Kufstein_Festung_Pendling-640.jpg" alt="640px width">
+    <hr>
+
+    <h3>480px width (1.5x)</h3>
+    <img src="Kufstein_Festung_Pendling-480.jpg" alt="480px width">
+    <hr>
+
+    <h3>320px width (1x)</h3>
+    <img src="Kufstein_Festung_Pendling-320.jpg" alt="320px width">
+    <hr>
+
+    <h3>Load with src-set</h3>
+    <img srcset="Kufstein_Festung_Pendling-320.jpg,
+                 Kufstein_Festung_Pendling-480.jpg 1.5x,
+                 Kufstein_Festung_Pendling-640.jpg 2x,
+                 Kufstein_Festung_Pendling-960.jpg 3x"
+         src="Kufstein_Festung_Pendling-960.jpg"
+         alt="Load by screen-resolution width 960 fallback">
+</body>
+</html>

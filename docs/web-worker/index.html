@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Web Worker</title>
+  </head>
+  <body>
+      <h1>Web Worker</h1>
+      <a href="../index.html">Back</a>
+     
+      <h2>Fibonacci Numbers</h2>
+      <table id="results">
+        <tr>
+            <th>n</th>
+            <th>fib</th>
+            <th>duration</th>
+        </tr>
+      </table>
+      
+    <script>
+        const worker = new Worker('fibonacci-webworker.js');
+
+        worker.onmessage = function(e) {
+            const resultWrapper = document.createElement('tr');            
+            resultWrapper.innerHTML = `
+                <td>${e.data.input}</td>
+                <td>${e.data.result}</td>
+                <td>${e.data.duration} sec</td>
+            `;
+            document.querySelector('#results').appendChild(resultWrapper);
+        };
+
+        worker.postMessage(40);
+        worker.postMessage(41);
+        worker.postMessage(42);
+        worker.postMessage(43); 
+        worker.postMessage(44);
+        worker.postMessage(45);
+        worker.postMessage(46);
+        worker.postMessage(47);        
+    </script>            
+  </body>
+</html>

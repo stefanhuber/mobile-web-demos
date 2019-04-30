@@ -4,12 +4,11 @@
   "description": "Some Demos of Mobile Web Features",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server ./docs"
   },
-  "author": "Stefan Huber",
-  "license": "ISC",
+  "author": "Stefan Huber <mail@stefanhuber.at>",
+  "license": "BSD-2-Clause",
   "devDependencies": {
-    "browser-sync": "^2.11.2",
-    "gulp": "^3.9.1"
+    "http-server": "^0.11.1"
   }
 }
