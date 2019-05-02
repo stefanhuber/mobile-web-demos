@@ -10,5 +10,26 @@
     <h1>Service Worker</h1>
     <a href="../index.html">Back</a>
 
+    <img src="Festung_1.jpg">
+
+    <button>Change image</button>
+
+    <script>
+        const button = document.querySelector('button');
+        const image = document.querySelector('img');
+
+        button.addEventListener('click', function() {
+            if (image.src.endsWith('1.jpg')) {
+                image.src = 'Festung_2.jpg';
+            } else {
+                image.src = 'Festung_1.jpg';
+            }
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .catch(error => console.error(error));
+        }
+    </script>
 </body>
 </html>

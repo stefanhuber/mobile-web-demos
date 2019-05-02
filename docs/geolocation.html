@@ -8,13 +8,14 @@
   </head>
   <body>
       <h1>Geolocation</h1>
-      <a href="index.html">Back</a>
+      <a href="index.html">Back</a><br>
       
       <div id="result"></div>
       
       <script>
           navigator.geolocation.getCurrentPosition(function(position) {
-              document.getElementById('result').innerHTML = "Geolocation: " + position.coords.latitude + ":" + position.coords.longitude;
+              let text = `Your current geolocation is <a href="geo:${position.coords.latitude},${position.coords.longitude}">${position.coords.latitude}/${position.coords.longitude}</a>`;
+              document.getElementById('result').innerHTML = text;
           }, function(error) {
               document.getElementById('result').innerHTML = "Error while retrieving Geolocation";
           });          

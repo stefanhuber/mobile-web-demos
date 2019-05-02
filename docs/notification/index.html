@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notification</title>
+
+    <style>
+        .info {
+            border:1px solid #00f;
+            background:#88f;
+            padding:4px;
+            border-radius: 4px;
+            margin:10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Notification</h1>
+    <a href="../index.html">Back</a>
+
+    <div class="info"></div>
+
+    <br>
+    <button>Trigger Notification</button>
+
+    <script>
+        const info = document.querySelector('.info');
+        const permissionInfoUpdate = () => {
+            info.innerHTML = `Notification permission: ${Notification.permission}`;            
+        }
+
+        if (!("Notification" in window)) {
+            info.innerHTML = "Notifications are not supported by your browser";
+        } else if (Notification.permission != 'granted') {
+            Notification.requestPermission()
+                .then(() => permissionInfoUpdate)
+                .catch(console.error);               
+        } else {
+            permissionInfoUpdate();
+        }
+
+        function triggerNotification() {
+            const title = "Notification example";
+            const options = {
+                badge: 'happy.png',
+                image: 'Notification-Image.jpg',
+                body: 'Additional body text for the notification',
+                actions: [
+                    {
+                        action: 'coffee-action',
+                        title: 'coffee',
+                        icon: 'coffee.png'
+                    } ,
+                    {
+                        action: 'ice-cream-action',
+                        title: 'ice cream',
+                        icon: 'ice-cream.png'
+                    }
+                ]
+            };
+
+            if (Notification.permission == 'granted') {
+                try {
+                    new Notification(title, options);
+                } catch (e) {
+                    navigator.serviceWorker.register('sw.js');
+                    navigator.serviceWorker.ready.then(registration => registration.showNotification(title, options));
+                }
+            }
+        };
+
+        document.querySelector('button').addEventListener('click', triggerNotification);
+    </script>
+</body>
+</html>
