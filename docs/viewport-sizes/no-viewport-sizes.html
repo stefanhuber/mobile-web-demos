@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No Viewport Size</title>
+
+    <style>
+        .width-100-px {
+            color: #f535aa;
+            padding:15px 0;
+            margin-top:10px;
+        }
+        .width-100-px > div{
+            background: #f535aa;
+            height:10px;
+            width:100px;
+        }
+        .width-200-px {
+            color: #39ff14;
+            padding:15px 0;
+        }
+        .width-200-px > div{
+            background: #39ff14;
+            height:10px;
+            width:200px;    
+        }
+        .width-300-px {
+            color: #0000ff;
+            padding:15px 0;
+        }
+        .width-300-px > div{
+            background: #0000ff;
+            height:10px;
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>No Viewport Size</h1>
+    <a href="index.html">Back</a><br>
+
+    <table id="units">
+    </table>
+
+    <div class="width-100-px">
+        <b>100px</b>
+        <div></div>
+    </div>
+
+    <div class="width-200-px">
+        <b>200px</b>
+        <div></div>
+    </div>
+
+    <div class="width-300-px">
+        <b>300px</b>
+        <div></div>
+    </div>
+
+    <script>
+        function retrieveUnits() {
+            const width = window.screen.width;
+            const height = window.screen.height;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const devicePixelRatio = window.devicePixelRatio;
+
+            const unitsElement = document.querySelector('#units');
+            unitsElement.innerHTML = `
+            <tr>
+                <th>CSS width/height</th>
+                <td>${width}/${height}</td>
+            </tr>
+            <tr>
+                <th>Window width/height</th>
+                <td>${windowWidth}/${windowHeight}</td>
+            </tr>
+            <tr>
+                <th>Device Pixel Ratio</th>
+                <td>${devicePixelRatio}</td>
+            </tr>
+            <tr>
+                <th>Physical width/height (calculated)</th>
+                <td>${width * devicePixelRatio}/${height * devicePixelRatio}</td>
+            </tr>
+            <tr>
+                <th>1 vw</th>
+                <td>${width / 100} px (CSS)</td>
+            </tr>
+            <tr>
+                <th>1 vh</th>
+                <td>${height / 100} px (CSS)</td>
+            </tr>
+            `;
+        };
+
+        retrieveUnits();
+        window.addEventListener('resize', retrieveUnits);
+    </script>
+</body>
+</html>
