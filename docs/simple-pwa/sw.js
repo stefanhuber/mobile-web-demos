@@ -1,6 +1,6 @@
 self.addEventListener('install', function(event) {
     event.waitUntil(
-        caches.open('v1').then(function(cache) {
+        caches.open('simple-pwa-v1').then(function(cache) {
             return cache.addAll([
                 '/simple-pwa/',
                 '/simple-pwa/index.html',
@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.open('v1')
+        caches.open('simple-pwa-v1')
             .then(function(cache) {
                 return cache.match(event.request);
             }).then(function(response) {

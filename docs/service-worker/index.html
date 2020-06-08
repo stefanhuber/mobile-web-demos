@@ -10,9 +10,58 @@
     <h1>Service Worker</h1>
     <a href="../index.html">Back</a>
 
-    <img src="Festung_1.jpg">
+    <div>
+        <img src="Festung_1.jpg">
+    </div>    
 
     <button>Change image</button>
+
+    <h2>Service Worker state transitions</h2>
+    <div id="sw-states"></div>
+
+    <h2>Cache content</h2>
+    <div id="sw-cache"></div>
+
+    <script>
+        const updateServiceWorkerStates = (serviceWorker, serviceWorkerType) => {
+            const swStates = document.querySelector('#sw-states');
+            swStates.innerHTML += `<div>${serviceWorkerType}: ${serviceWorker.state}</div>`;         
+        };
+
+        if ('serviceWorker' in navigator) {           
+            navigator.serviceWorker.register('./sw.js')
+                .then(registration => { console.log(registration);
+                    let serviceWorker;
+                    let serviceWorkerType;
+
+                    if (registration.installing) {
+                        serviceWorker = registration.installing;
+                        serviceWorkerType = "installing";
+                    } else if (registration.waiting) {
+                        serviceWorker = registration.waiting;
+                        serviceWorkerType = "waiting";
+                    } else if (registration.active) {
+                        serviceWorker = registration.active;
+                        serviceWorkerType = "active";
+                    }
+                    if (serviceWorker) {             
+                        updateServiceWorkerStates(serviceWorker, serviceWorkerType); 
+                        serviceWorker.addEventListener('statechange', () => updateServiceWorkerStates(serviceWorker, serviceWorkerType));
+                    }
+                })
+                .catch(error => console.error(error));
+        }
+        if (caches) {
+            caches.open('sw-example-v1')
+                .then(cache => cache.keys())
+                .then(requests => {
+                    const swCache = document.querySelector('#sw-cache');
+                    for (const request of requests) {
+                        swCache.innerHTML += `<div>${request.url}</div>`;
+                    }    
+                });
+        }        
+    </script>
 
     <script>
         const button = document.querySelector('button');
@@ -25,11 +74,6 @@
                 image.src = 'Festung_1.jpg';
             }
         });
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .catch(error => console.error(error));
-        }
     </script>
 </body>
 </html>

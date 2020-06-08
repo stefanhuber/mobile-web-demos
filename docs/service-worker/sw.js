@@ -1,6 +1,6 @@
 self.addEventListener('install', function(event) {
     event.waitUntil(
-        caches.open('v1').then(function(cache) {
+        caches.open('sw-example-v1').then(function(cache) {
             return cache.addAll([
                 '/service-worker/',
                 '/service-worker/index.html',
@@ -11,13 +11,19 @@ self.addEventListener('install', function(event) {
     );
 });
 
+// CACHING STRATEGY:
+// 1) Try network and update cache
+// 2) Use cache if network failed
+
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.open('v1')
-            .then(function(cache) {
-                return cache.match(event.request);
-            }).then(function(response) {
-                return response || fetch(event.request);
-            })
-    );
+        caches.open('sw-example-v1')
+            .then((cache) => fetch(event.request)
+                .then(response => {
+                    cache.put(event.request, response.clone());
+                    return response;
+                })
+                .catch(() => cache.match(event.request))
+        )
+    )        
 });

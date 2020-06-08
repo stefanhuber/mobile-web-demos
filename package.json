@@ -1,14 +1,8 @@
 {
-  "name": "mobile-web-demos",
-  "version": "1.0.0",
-  "description": "Some Demos of Mobile Web Features",
-  "main": "index.js",
   "scripts": {
-    "start": "http-server ./docs"
+    "start": "http-server docs -p 8080"
   },
-  "author": "Stefan Huber <mail@stefanhuber.at>",
-  "license": "BSD-2-Clause",
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.12.3"
   }
 }
