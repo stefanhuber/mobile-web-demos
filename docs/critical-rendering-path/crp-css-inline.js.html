@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRP Example</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body onload="measureCRP()">
+    <p>Critical Rendering Path <span>Example</span></p>
+    <div>
+        <img src="Kufstein_Festung_Pendling-480.jpg">
+    </div>
+    <script>
+        function measureCRP() {
+            let span = document.getElementsByTagName('span')[0];
+            span.textContent = 'interactive Example'; 
+            span.style.display = 'inline';              
+            let loadTime = document.createElement('div');
+            loadTime.textContent = 'You loaded this page on: ' + new Date();
+            loadTime.style.color = 'blue';
+            document.body.appendChild(loadTime);
+        }
+    </script>
+</body>
+</html>
