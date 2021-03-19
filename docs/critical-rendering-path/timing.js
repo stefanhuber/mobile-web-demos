@@ -8,3 +8,4 @@ function measureCRP() {
     loadTime.style.color = 'blue';
     document.body.appendChild(loadTime);
 }
+window.addEventListener('load', () => measureCRP());

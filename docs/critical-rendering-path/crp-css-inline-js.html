@@ -6,7 +6,7 @@
     <title>CRP Example</title>
     <link href="style.css" rel="stylesheet">
 </head>
-<body onload="measureCRP()">
+<body>
     <p>Critical Rendering Path <span>Example</span></p>
     <div>
         <img src="Kufstein_Festung_Pendling-480.jpg">
@@ -21,6 +21,7 @@
             loadTime.style.color = 'blue';
             document.body.appendChild(loadTime);
         }
+        window.addEventListener('load', measureCRP);
     </script>
 </body>
 </html>
