@@ -1,7 +1,7 @@
 {
   "name": "Simple Demo PWA",
   "short_name": "PWA",
-  "start_url": "https://stefanhuber.github.io/mobile-web-demos/simple-pwa/",
+  "start_url": "/mobile-web-demos/simple-pwa/index.html",
   "display": "standalone",
   "background_color": "#f0f",
   "theme_color": "#f0f",
@@ -15,7 +15,12 @@
     "sizes": "16x16",
     "type": "image/png",
     "purpose": "badge"
+  }, {
+    "src": "icon196.png",
+    "sizes": "196x196",
+    "type": "image/png",
+    "purpose": "any maskable"
   }],
   "orientation": "portrait",
-  "scope": "/simple-pwa/"
+  "scope": "/mobile-web-demos/simple-pwa/"
 }
