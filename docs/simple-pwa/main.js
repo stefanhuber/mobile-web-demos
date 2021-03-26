@@ -9,8 +9,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('body').style.background = "rgb(" + colorChannels.join(', ') + ")";
     });
 });
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-        .catch(error => console.error(error));
-}

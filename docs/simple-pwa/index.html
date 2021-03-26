@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ff00ff"/>
         <link rel="apple-touch-icon" href="./icon192.png">
-
         <link rel="manifest" href="manifest.webmanifest">
         <link rel="stylesheet" href="style.css">
 
@@ -18,6 +17,12 @@
       <a href="../index.html">Back</a><br>
       <main>
         <button>Change Background</button>
-      </main>        
+      </main>
+      <script>        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .catch(error => console.error(error));
+        }
+      </script>        
   </body>
 </html>
