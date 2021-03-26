@@ -1,7 +1,7 @@
 {
   "name": "Simple Demo PWA",
   "short_name": "PWA",
-  "start_url": ".",
+  "start_url": "https://stefanhuber.github.io/mobile-web-demos/simple-pwa/",
   "display": "standalone",
   "background_color": "#f0f",
   "theme_color": "#f0f",
