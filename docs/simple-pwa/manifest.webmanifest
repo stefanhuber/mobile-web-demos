@@ -21,6 +21,5 @@
     "type": "image/png",
     "purpose": "any maskable"
   }],
-  "orientation": "portrait",
-  "scope": "/mobile-web-demos/simple-pwa/"
+  "orientation": "portrait"
 }
