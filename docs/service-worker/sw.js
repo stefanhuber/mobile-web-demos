@@ -2,10 +2,10 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open('sw-example-v1').then(function(cache) {
             return cache.addAll([
-                '/service-worker/',
-                '/service-worker/index.html',
-                '/service-worker/Festung_1.jpg',
-                '/service-worker/Festung_2.jpg'
+                './',
+                './index.html',
+                './Festung_1.jpg',
+                './Festung_2.jpg'
             ])
         })
     );
