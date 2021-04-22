@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="style.css">
 
         <title>Simple PWA</title>
-        <script src="main.js"></script>
+        <script async src="main.js"></script>
   </head>
   <body>
       <h1>Simple PWA</h1>
@@ -24,5 +24,12 @@
                 .catch(error => console.error(error));
         }
       </script>        
+
+      <article>
+        <h2>Install PWA</h2>
+        <p>Do you want to install this App as a PWA?</p>
+        <button data-id="install-yes">Yes</button>
+        <button data-id="install-no">No</button>
+      </article>
   </body>
 </html>
