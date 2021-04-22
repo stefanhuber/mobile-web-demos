@@ -26,6 +26,17 @@
         const updateServiceWorkerStates = (serviceWorker, serviceWorkerType) => {
             const swStates = document.querySelector('#sw-states');
             swStates.innerHTML += `<div>${serviceWorkerType}: ${serviceWorker.state}</div>`;         
+
+            if (serviceWorker.state == 'activated' && caches) {
+                caches.open('sw-example-v1')
+                    .then(cache => cache.keys())
+                    .then(requests => {
+                        const swCache = document.querySelector('#sw-cache');
+                        for (const request of requests) {
+                            swCache.innerHTML += `<div>${request.url}</div>`;
+                        }    
+                    });                
+            }
         };
 
         if ('serviceWorker' in navigator) {           
@@ -50,17 +61,7 @@
                     }
                 })
                 .catch(error => console.error(error));
-        }
-        if (caches) {
-            caches.open('sw-example-v1')
-                .then(cache => cache.keys())
-                .then(requests => {
-                    const swCache = document.querySelector('#sw-cache');
-                    for (const request of requests) {
-                        swCache.innerHTML += `<div>${request.url}</div>`;
-                    }    
-                });
-        }        
+        }              
     </script>
 
     <script>
